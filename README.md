@@ -4,7 +4,7 @@ A small “guess the next move” candlestick training game for US stocks.
 It generates an episode from historical OHLCV data, hides the last N bars, and asks you to guess **UP / DOWN**.  
 The project can optionally use **Gemini (Google API)** to produce coach-style hints and post-mortem explanations.
 
-## How this project is implemented as an “agent” system (English)
+## How this project is implemented as an “agent” system 
 
 This repo is intentionally structured as a **small agentic system** rather than a single script.  
 Each “agent” owns a clear responsibility and passes artifacts to the next stage, forming a loop:
@@ -46,7 +46,7 @@ Each “agent” owns a clear responsibility and passes artifacts to the next st
 - **Extensibility**: easy to add new tasks (e.g., “breakout next 5 bars?”, “touch MA20?”)  
 - **LLM safety**: LLM is used for explanation, not trading commands
 
-## Features (English)
+## Features 
 
 - **Episode generation**: sample a historical window and hide last N bars
 - **Interactive UI** (Streamlit): candlestick chart + buttons (UP/DOWN)
@@ -55,7 +55,7 @@ Each “agent” owns a clear responsibility and passes artifacts to the next st
 - **LLM explanation (optional)**: Gemini generates hints + post-mortem explanations
 - **Bilingual UI**: English / Chinese toggle
 
-## Quick Start (English)
+## Quick Start 
 
 ### 1) Install
 ```bash
@@ -83,7 +83,7 @@ export UKG_GEMINI_MODEL="gemini-2.5-flash"
 streamlit run src/us_kline_guess/ui/streamlit_app.py
 ```
 
-## Environment Variables (English)
+## Environment Variables
 
 - `UKG_DATA_PROVIDER`: `sample` | `yfinance` | `stooq`
 - `GOOGLE_API_KEY`: Gemini API key
@@ -91,7 +91,14 @@ streamlit run src/us_kline_guess/ui/streamlit_app.py
 - `UKG_GEMINI_MODEL`: e.g. `gemini-2.5-flash`
 - `UKG_LANG`: `en` or `zh` (UI also sets this automatically)
 
+
+## Attribution / Usage Note 
+
+You are welcome to use this toy project for learning, demos, and experiments.
+Please keep a short attribution note that this project was created by the owner of this GitHub account (the original author of this repository).
+
 ---
+
 
 # 美股 K 线猜猜乐（Agent 小项目）
 
