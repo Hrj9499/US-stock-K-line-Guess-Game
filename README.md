@@ -106,7 +106,7 @@ Please keep a short attribution note that this project was created by the owner 
 系统会从历史行情中截取一段 OHLCV 数据，隐藏最后 N 根 K 线，让你猜 **UP / DOWN**。  
 项目支持接入 **Gemini（Google API）**，生成教练式提示与揭晓后的复盘解释。
 
-## 功能特点（中文）
+## 功能特点
 
 - **关卡生成**：从历史数据抽样一段走势，隐藏最后 N 根
 - **交互 UI（Streamlit）**：K 线图 + UP/DOWN 按钮
@@ -115,7 +115,7 @@ Please keep a short attribution note that this project was created by the owner 
 - **LLM 解释（可选）**：Gemini 生成提示 + 复盘解释
 - **中英文 UI 切换**
 
-## 快速开始（中文）
+## 快速开始
 
 ### 1）安装
 ```bash
@@ -143,7 +143,7 @@ export UKG_GEMINI_MODEL="gemini-2.5-flash"
 streamlit run src/us_kline_guess/ui/streamlit_app.py
 ```
 
-## 环境变量（中文）
+## 环境变量
 
 - `UKG_DATA_PROVIDER`：`sample` | `yfinance` | `stooq`
 - `GOOGLE_API_KEY`：Gemini API key
