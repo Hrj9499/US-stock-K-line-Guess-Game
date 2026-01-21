@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "us-kline-guess-agent"
+version = "0.1.0"
+description = "A minimal, runnable agent-like backend for US stock K-line guessing (free data providers)."
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [{name = "you"}]
+dependencies = [
+  "fastapi>=0.110",
+  "uvicorn[standard]>=0.24",
+  "pydantic>=2.6",
+  "pandas>=2.0",
+  "numpy>=1.24",
+  "yfinance>=0.2.30",
+  "requests>=2.31",
+  "python-dotenv>=1.0",
+]
+
+[project.scripts]
+us-kline-guess = "us_kline_guess.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
