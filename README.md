@@ -95,7 +95,7 @@ streamlit run src/us_kline_guess/ui/streamlit_app.py
 ## Attribution / Usage Note 
 
 You are welcome to use this toy project for learning, demos, and experiments.
-Please keep a short attribution note that this project was created by the owner of this GitHub account (the original author of this repository).
+Please keep a short attribution note that this project was created by the owner of this GitHub account (HRJ9499).
 
 ---
 
