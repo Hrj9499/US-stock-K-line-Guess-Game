@@ -4,6 +4,48 @@ A small “guess the next move” candlestick training game for US stocks.
 It generates an episode from historical OHLCV data, hides the last N bars, and asks you to guess **UP / DOWN**.  
 The project can optionally use **Gemini (Google API)** to produce coach-style hints and post-mortem explanations.
 
+## How this project is implemented as an “agent” system (English)
+
+This repo is intentionally structured as a **small agentic system** rather than a single script.  
+Each “agent” owns a clear responsibility and passes artifacts to the next stage, forming a loop:
+
+**Observe → Retrieve/Compute → Reason/Explain → Act → Evaluate → Persist**
+
+### Agent roles
+
+- **DataAgent (Observe / Retrieve)**
+  - Fetches OHLCV data using a pluggable **data provider** (`sample`, `yfinance`, `stooq`)
+  - Normalizes data into a consistent schema used by downstream agents
+  - Can cache results locally for fast iteration
+
+- **EpisodeAgent (Episode generation)**
+  - Samples a historical window (e.g. 80 bars)
+  - Hides the last N bars as the “future”
+  - Outputs an `Episode` artifact (stored as JSON) that includes:
+    - shown candles, hidden truth candles, question metadata, and a deterministic seed
+
+- **HintAgent (Reasoning primitives)**
+  - Computes **rule-based** signals / summary statistics (trend, volatility, key levels)
+  - Produces level-based hints (L1/L2/L3) in a structured way
+  - Acts as the “toolbox” for both UI and LLM explanations
+
+- **LLMExplainAgent (LLM reasoning & narration, optional)**
+  - Uses Gemini to transform structured stats into a **coach-style** hint (without leaking the answer)
+  - Generates a reveal-time **post-mortem** explanation after the user submits a guess
+  - The system keeps the *decision logic* in deterministic agents and uses LLM mainly for **natural-language explanation**
+
+- **ScoringAgent (Evaluate)**
+  - Validates the user’s guess against hidden truth
+  - Updates score and leaderboard
+  - Persists scores to a local file store for a lightweight “game loop”
+
+### Why this design
+
+- **Modularity**: swap providers / swap hint logic / swap UI without rewriting everything  
+- **Reproducibility**: episodes are artifacts (JSON) and can be replayed  
+- **Extensibility**: easy to add new tasks (e.g., “breakout next 5 bars?”, “touch MA20?”)  
+- **LLM safety**: LLM is used for explanation, not trading commands
+
 ## Features (English)
 
 - **Episode generation**: sample a historical window and hide last N bars
